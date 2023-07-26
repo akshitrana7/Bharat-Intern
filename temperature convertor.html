@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgb(0, 153, 255);
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h1 {
+      color: #fff;
+      margin-top: 0;
+    }
+
+    .card {
+      border-radius: 5px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px;
+      background: rgba(2, 35, 57, 0.5);
+      margin: 10px 0;
+    }
+
+    .card input {
+      font-size: 20px;
+      padding: 5px 10px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgb(255, 255, 255);
+      color: white;
+      width: 100px;
+      text-align: center;
+    }
+
+    .card input:focus {
+      outline: none;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    <div class="card">Celsius <input type="number" id="celsius" value="0"></div>
+    <div class="card">Fahrenheit <input type="number" id="fahrenheit" value="32"></div>
+    <div class="card">Kelvin <input type="number" id="kelvin" value="273.15"></div>
+  </div>
+  <script>
+    const inputs = document.querySelectorAll(".card input");
+    const c = document.querySelector("#celsius");
+    const f = document.querySelector("#fahrenheit");
+    const k = document.querySelector("#kelvin");
+
+    inputs.forEach(input => {
+      input.addEventListener("input", e => {
+        const unit = e.target.id;
+        const v = parseFloat(e.target.value);
+
+        if (unit === "celsius") {
+          f.value = ((v * 9 / 5) + 32).toFixed(2);
+          k.value = (v + 273.15).toFixed(2);
+        } else if (unit === "fahrenheit") {
+          c.value = ((v - 32) * 5 / 9).toFixed(2);
+          k.value = (((v - 32) * 5 / 9) + 273.15).toFixed(2);
+        } else if (unit === "kelvin") {
+          c.value = (v - 273.15).toFixed(2);
+          f.value = (((v - 273.15) * 9 / 5) + 32).toFixed(2);
+        }
+      })
+    });
+  </script>
+</body>
+
+</html>
